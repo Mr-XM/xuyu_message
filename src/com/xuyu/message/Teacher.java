@@ -17,7 +17,7 @@ public class Teacher {
 		this.mobile = mobile;
 	}
 	public void setItemNo(String itemNo) {
-		itemNo = itemNo;
+		this.itemNo = itemNo;
 	}
 
 	public void setUserId(String userId) {
