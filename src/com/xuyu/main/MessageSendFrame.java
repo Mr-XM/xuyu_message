@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import java.util.Timer;
@@ -16,6 +17,7 @@ import javax.swing.*;
 
 
 import com.xuyu.message.Messagesend;
+import com.xuyu.message.RemindMessage;
 import com.xuyu.tool.TimeUtils;
 
 /**
@@ -283,6 +285,18 @@ public class MessageSendFrame extends JFrame implements ActionListener{
 
     public static void main(String[] arg)
     {
+        int period=24*60*60*1000;
+        Timer remindMessageTimer = new Timer(true);
+        //设置执行时间
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        //定制每天的20:00:00执行
+        calendar.set(year, month, day, 20, 00, 00);
+        java.util.Date date = calendar.getTime();
+        remindMessageTimer.schedule(new RemindMessage(), date,period);
+
         MessageSendFrame a = new MessageSendFrame();
     }
 

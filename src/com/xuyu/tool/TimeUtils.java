@@ -82,6 +82,23 @@ public class TimeUtils {
 	}
 
 	/**
+	 * 判断传入时间是星期几
+	 * @param dt 传入时间
+	 * @return String
+	 */
+	public String getWeekOfDate1(Date dt) {
+		String[] weekDays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dt);
+
+		int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+		if (w < 0)
+			w = 0;
+
+		return weekDays[w];
+	}
+
+	/**
 	 * 设置定时器时间
 	 *
 	 * @param month 月

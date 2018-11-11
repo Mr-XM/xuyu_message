@@ -6,26 +6,30 @@ package com.xuyu.message;
  * @author zhagyinghao
  */
 public class Teacher {
-	private String UserId;
+	private String userId;
 	private String name;
 	private String mobile;
+	private String itemNo;
 
-	public Teacher(String U_id, String n, String m) {
-		UserId = U_id;
-		name = n;
-		mobile = m;
+	public Teacher(String userId, String name, String mobile) {
+		this.userId = userId;
+		this.name = name;
+		this.mobile = mobile;
+	}
+	public void setItemNo(String itemNo) {
+		itemNo = itemNo;
 	}
 
-	public void setUserId(String U_id) {
-		UserId = U_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public void setName(String n) {
-		name = n;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setMobile(String m) {
-		mobile = m;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	public String getName() {
@@ -33,11 +37,15 @@ public class Teacher {
 	}
 
 	public String getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public String getMobile() {
 		return mobile;
+	}
+
+	public String getItemNo() {
+		return itemNo;
 	}
 }
 
