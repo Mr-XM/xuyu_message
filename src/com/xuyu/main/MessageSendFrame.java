@@ -21,10 +21,11 @@ import com.xuyu.message.RemindMessage;
 import com.xuyu.tool.TimeUtils;
 
 /**
- *生成发送消息的界面
+ * 生成发送消息的界面
+ *
  * @author zhangyinghao
  */
-public class MessageSendFrame extends JFrame implements ActionListener{
+public class MessageSendFrame extends JFrame implements ActionListener {
     /**
      *
      */
@@ -33,7 +34,7 @@ public class MessageSendFrame extends JFrame implements ActionListener{
     /**
      * 定时发送时间间隔
      */
-    public static final int TIMER_SEND_TIME_INTERVAL=7 * 24 * 60 * 60 * 1000;
+    public static final int TIMER_SEND_TIME_INTERVAL = 7 * 24 * 60 * 60 * 1000;
 
     /**
      * 窗口
@@ -61,7 +62,7 @@ public class MessageSendFrame extends JFrame implements ActionListener{
     public JButton mBtnClear;
 
     /**
-     *定时任务状态提示
+     * 定时任务状态提示
      */
     public JLabel mLblSendStatusTips;
 
@@ -142,7 +143,7 @@ public class MessageSendFrame extends JFrame implements ActionListener{
         mTxtMinute = new JTextField();
 
 
-        final String labels[] = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日" };
+        final String labels[] = {"星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"};
         final DefaultComboBoxModel model = new DefaultComboBoxModel(labels);
         mCboWeek = new JComboBox(model);
 
@@ -190,13 +191,13 @@ public class MessageSendFrame extends JFrame implements ActionListener{
         c.add(sp);
 
 
-
         jf.setVisible(true);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     /**
      * 判断输入的字符是否是数字
+     *
      * @param str 传入的字符串
      * @return boolean类型
      */
@@ -217,7 +218,7 @@ public class MessageSendFrame extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(jf, "请输入时，分");
                 return;
             }
-            if(!isNumber(mTxtHour.getText()) && !isNumber(mTxtMinute.getText())){
+            if (!isNumber(mTxtHour.getText()) && !isNumber(mTxtMinute.getText())) {
                 JOptionPane.showMessageDialog(jf, "请输入正确的时间");
                 return;
             }
@@ -228,7 +229,7 @@ public class MessageSendFrame extends JFrame implements ActionListener{
             hour = Integer.valueOf(mTxtHour.getText());
             minute = Integer.valueOf(mTxtMinute.getText());
 
-            if ((hour > 23 || hour < 0) || (minute < 0 || minute > 59)){
+            if ((hour > 23 || hour < 0) || (minute < 0 || minute > 59)) {
                 JOptionPane.showMessageDialog(jf, "请输入正确的时间");
                 return;
             }
@@ -258,13 +259,13 @@ public class MessageSendFrame extends JFrame implements ActionListener{
 
                 mtimerSend.cancel();
                 mtimerSend.purge();
-                mtimerSend =null;
+                mtimerSend = null;
 
             }
 
         }
         if (e.getSource().equals(mBtnRightSend)) {
-            String text="\t" + TimeUtils.getNowTime() + "\t" + "立即发送" + "\n";
+            String text = "\t" + TimeUtils.getNowTime() + "\t" + "立即发送" + "\n";
             Messagesend.rightSend();
             addSendRecord(text);
         }
@@ -276,16 +277,17 @@ public class MessageSendFrame extends JFrame implements ActionListener{
 
     /**
      * 在JTextArea文本域添加定时发送记录
+     *
      * @param text 发送记录文本，存储发送的时间和方式
      */
-    public static void addSendRecord(String text){
+    public static void addSendRecord(String text) {
         mTxaOutRecord.append(text);
         mTxaOutRecord.setCaretPosition(mTxaOutRecord.getText().length());
     }
 
-    public static void main(String[] arg)
-    {
-        int period=24*60*60*1000;
+    public static void main(String[] arg) {
+        //int period = 24 * 60 * 60 * 1000;
+        int period = 60 * 1000;
         Timer remindMessageTimer = new Timer(true);
         //设置执行时间
         Calendar calendar = Calendar.getInstance();
@@ -295,7 +297,7 @@ public class MessageSendFrame extends JFrame implements ActionListener{
         //定制每天的20:00:00执行
         calendar.set(year, month, day, 20, 00, 00);
         java.util.Date date = calendar.getTime();
-        remindMessageTimer.schedule(new RemindMessage(), date,period);
+        remindMessageTimer.schedule(new RemindMessage(), date, period);
 
         MessageSendFrame a = new MessageSendFrame();
     }

@@ -20,10 +20,10 @@ public interface IWxInfo {
     String CONTENT = "content";
     String SAFE = "safe";
     String ERRMSG = "errmsg";
-    
-    
-    String ERRCODE="errcode";
-    String INVALIDUSER="invaliduser";
-    
+
+
+    String ERRCODE = "errcode";
+    String INVALIDUSER = "invaliduser";
+
 }
 

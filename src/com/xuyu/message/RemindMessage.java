@@ -18,9 +18,9 @@ public class RemindMessage extends TimerTask {
     /**
      * 每天晚上发送一条信息提醒第二天有课要上的老师
      */
-    public void sendRemind() {
+    public static void sendRemind() {
         TimeUtils timeutils = new TimeUtils();
-        String AccessToken = WxContext.getInstance().getAccessToken();
+        String accessToken = WxContext.getInstance().getAccessToken();
         String text = "明天有工作等待您的完成，请不要忘记哦！";
         if (timeutils.getWeekOfDate1(new Date()).equals("Monday")) {
             List<Teacher> list = SqlHelper.getUserId("Tuesday");
@@ -29,7 +29,7 @@ public class RemindMessage extends TimerTask {
                 String itemNo[] = list.get(i).getItemNo().split(",");
                 for (int j = 0; j < itemNo.length; j++) {
                     if (YouzanApi.isHasClass(itemNo[j], Long.parseLong(itemId))) {
-                        WxApi.sendTxtMsg1(AccessToken, list.get(i).getUserId(), text);
+                        WxApi.sendTxtMsg1(accessToken, list.get(i).getUserId(), text);
                         break;
                     }
                 }
@@ -41,7 +41,7 @@ public class RemindMessage extends TimerTask {
                 String itemNo[] = list.get(i).getItemNo().split(",");
                 for (int j = 0; j < itemNo.length; j++) {
                     if (YouzanApi.isHasClass(itemNo[j], Long.parseLong(itemId))) {
-                        WxApi.sendTxtMsg1(AccessToken, list.get(i).getUserId(), text);
+                        WxApi.sendTxtMsg1(accessToken, list.get(i).getUserId(), text);
                         break;
                     }
                 }
@@ -53,7 +53,7 @@ public class RemindMessage extends TimerTask {
                 String itemNo[] = list.get(i).getItemNo().split(",");
                 for (int j = 0; j < itemNo.length; j++) {
                     if (YouzanApi.isHasClass(itemNo[j], Long.parseLong(itemId))) {
-                        WxApi.sendTxtMsg1(AccessToken, list.get(i).getUserId(), text);
+                        WxApi.sendTxtMsg1(accessToken, list.get(i).getUserId(), text);
                         break;
                     }
                 }
@@ -65,7 +65,7 @@ public class RemindMessage extends TimerTask {
                 String itemNo[] = list.get(i).getItemNo().split(",");
                 for (int j = 0; j < itemNo.length; j++) {
                     if (YouzanApi.isHasClass(itemNo[j], Long.parseLong(itemId))) {
-                        WxApi.sendTxtMsg1(AccessToken, list.get(i).getUserId(), text);
+                        WxApi.sendTxtMsg1(accessToken, list.get(i).getUserId(), text);
                         break;
                     }
                 }
@@ -77,7 +77,7 @@ public class RemindMessage extends TimerTask {
                 String itemNo[] = list.get(i).getItemNo().split(",");
                 for (int j = 0; j < itemNo.length; j++) {
                     if (YouzanApi.isHasClass(itemNo[j], Long.parseLong(itemId))) {
-                        WxApi.sendTxtMsg1(AccessToken, list.get(i).getUserId(), text);
+                        WxApi.sendTxtMsg1(accessToken, list.get(i).getUserId(), text);
                         break;
                     }
                 }
@@ -89,7 +89,7 @@ public class RemindMessage extends TimerTask {
                 String itemNo[] = list.get(i).getItemNo().split(",");
                 for (int j = 0; j < itemNo.length; j++) {
                     if (YouzanApi.isHasClass(itemNo[j], Long.parseLong(itemId))) {
-                        WxApi.sendTxtMsg1(AccessToken, list.get(i).getUserId(), text);
+                        WxApi.sendTxtMsg1(accessToken, list.get(i).getUserId(), text);
                         break;
                     }
                 }
@@ -101,7 +101,7 @@ public class RemindMessage extends TimerTask {
                 String itemNo[] = list.get(i).getItemNo().split(",");
                 for (int j = 0; j < itemNo.length; j++) {
                     if (YouzanApi.isHasClass(itemNo[j], Long.parseLong(itemId))) {
-                        WxApi.sendTxtMsg1(AccessToken, list.get(i).getUserId(), text);
+                        WxApi.sendTxtMsg1(accessToken, list.get(i).getUserId(), text);
                         break;
                     }
                 }
@@ -111,16 +111,11 @@ public class RemindMessage extends TimerTask {
 
     }
 
-    private static boolean isRunning = false;
 
     @Override
     public void run() {
         // TODO Auto-generated method stub
-        if (!isRunning) {
-            isRunning = true;
-            sendRemind();
-            isRunning = false;
-        }
+        RemindMessage.sendRemind();
     }
 
 }

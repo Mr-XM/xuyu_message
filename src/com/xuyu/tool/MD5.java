@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 public class MD5 {
     public static String getMD5(String str) {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA");//创建具有指定算法名称的摘要
+            MessageDigest md = MessageDigest.getInstance("MD5");//创建具有指定算法名称的摘要
             md.update(str.getBytes());                    //使用指定的字节数组更新摘要
             byte mdBytes[] = md.digest();                 //进行哈希计算并返回一个字节数组
 
